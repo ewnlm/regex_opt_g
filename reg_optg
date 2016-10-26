@@ -1,2 +1,9 @@
 #!/usr/bin/perl -w
   use strict;
+  my @cmd;
+  my @resp;
+  my @ary;
+  while(<>) {
+    push @cmd, $1, if(/^(CMD[1-9]\d?)/);
+    push @resp, scalar join "", @ary[1..$#ary-1], "\n", if(/^RESP/ and @ary = /\b\w{2}\b/g);
+  }
